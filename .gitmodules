@@ -1,3 +1,6 @@
 [submodule "hdl/osvvm/hdl"]
 	path = hdl/osvvm/hdl
 	url = https://github.com/OSVVM/OSVVM.git
+[submodule "make-hdl"]
+	path = make-hdl
+	url = https://github.com/jordanfwoods/make-hdl.git

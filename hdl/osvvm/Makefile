@@ -4,4 +4,4 @@
 ## https://creativecommons.org/licenses/by-nc-sa/4.0/                 ##
 ########################################################################
 include ../lib_osvvm/osvvm.mk
-include ../../make/questa/questa.mk
+include ../../make-hdl/questa/questa.mk
