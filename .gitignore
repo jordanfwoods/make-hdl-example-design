@@ -4,6 +4,7 @@ hdl/*/transcript
 hdl/*/modelsim.ini
 hdl/*/sim
 hdl/*/results
+hdl/*/logs
 
 .cache
 .Xil
