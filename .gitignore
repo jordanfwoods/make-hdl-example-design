@@ -8,3 +8,6 @@ hdl/*/logs
 
 .cache
 .Xil
+NA
+vivado*.log
+vivado*.jou

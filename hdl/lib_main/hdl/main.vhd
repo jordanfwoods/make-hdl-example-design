@@ -29,10 +29,11 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+library lib_and;
+library lib_axi_gpio;
 library lib_common;
 use lib_common.common_pkg.all;
 
-library lib_and;
 
 entity main is
    port (
@@ -49,7 +50,7 @@ end entity main;
 architecture rtl of main is
 
 -- component decalrations
-component axi_gpio_0
+component gpio
   port (
     s_axi_aclk    : in std_logic;
     s_axi_aresetn : in std_logic;
@@ -73,18 +74,18 @@ component axi_gpio_0
     gpio_io_i     : in std_logic_vector(31 downto 0);
     gpio2_io_o    : out std_logic_vector(31 downto 0)
   );
-end component axi_gpio_0;
+end component gpio;
 
-signal gpio         : std_logic_vector(31 downto 0);
+signal gpio1        : std_logic_vector(31 downto 0);
 signal gpio2        : std_logic_vector(31 downto 0);
-alias  gpio_used    : std_logic_vector(15 downto 0) is gpio( 15 downto  0);
-alias  gpio_unused  : std_logic_vector(15 downto 0) is gpio( 31 downto 16);
+alias  gpio_used    : std_logic_vector(15 downto 0) is gpio1( 15 downto  0);
+alias  gpio_unused  : std_logic_vector(15 downto 0) is gpio1( 31 downto 16);
 alias  gpio2_msb    : std_logic_vector(15 downto 0) is gpio2(31 downto 16);
 alias  gpio2_lsb    : std_logic_vector(15 downto 0) is gpio2(15 downto  0);
 
 begin
 
-u_axi_gpio_0 : axi_gpio_0
+u_gpio : gpio
    port map (
       s_axi_aclk    => clk,
       s_axi_aresetn => rstn,
@@ -105,7 +106,7 @@ u_axi_gpio_0 : axi_gpio_0
       s_axi_rresp   => axi_s_gpio.rresp,
       s_axi_rvalid  => axi_s_gpio.rvalid,
       s_axi_rready  => axi_m_gpio.rready,
-      gpio_io_i     => gpio,
+      gpio_io_i     => gpio1,
       gpio2_io_o    => gpio2
    );
 
@@ -119,6 +120,6 @@ u_and : entity lib_and.and2
    );
 
 gpio_unused <= (others => '0');
-o_led(0) <= gpio(0);
+o_led(0) <= gpio1(0);
 
 end architecture rtl; -- of main
