@@ -5,6 +5,7 @@ hdl/*/modelsim.ini
 hdl/*/sim
 hdl/*/results
 hdl/*/logs
+hdl/*/vivado
 
 .cache
 .Xil

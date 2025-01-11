@@ -15,13 +15,14 @@ if {[llength $files] != 0} {
 #Reference HDL and constraint source files
 read_vhdl    -library lib_top     hdl/top.vhd
 read_vhdl    -library lib_main    ../lib_main/hdl/main.vhd
-read_vhdl    -library lib_and     ../lib_and/hdl/and2.vhd
 read_vhdl    -library lib_common  ../lib_common/hdl/common_pkg.vhd
 add_files                         ../lib_axi_gpio/gpio/gpio.dcp
+add_files                         ../lib_and/vivado/post_synth_and2.dcp
 read_xdc                          top.xdc
 read_bd                           ../lib_bd/bd/bd.bd
 set_property LIBRARY lib_bd       [get_files -all ../lib_bd/bd/bd.bd]
 set_property LIBRARY lib_axi_gpio [get_files -all ../lib_axi_gpio/gpio/gpio.dcp]
+set_property LIBRARY lib_and      [get_files -all ../lib_and/vivado/post_synth_and2.dcp]
 
 #Run Synthesis
 synth_design          -top top -part $partNum

@@ -76,6 +76,14 @@ component gpio
   );
 end component gpio;
 
+component and2
+   port (
+      a : in  std_logic_vector(15 downto 0);
+      b : in  std_logic_vector(15 downto 0);
+      c : out std_logic_vector(15 downto 0)
+   );
+end component and2;
+
 signal gpio1        : std_logic_vector(31 downto 0);
 signal gpio2        : std_logic_vector(31 downto 0);
 alias  gpio_used    : std_logic_vector(15 downto 0) is gpio1( 15 downto  0);
@@ -110,10 +118,8 @@ u_gpio : gpio
       gpio2_io_o    => gpio2
    );
 
-u_and : entity lib_and.and2
-   generic map (
-      G_WIDTH => 16
-   ) port map (
+u_and : and2
+   port map (
       a => gpio2_msb,
       b => gpio2_lsb,
       c => gpio_used

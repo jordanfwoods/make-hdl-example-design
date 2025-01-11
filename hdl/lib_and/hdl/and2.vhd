@@ -29,7 +29,7 @@ use ieee.numeric_std.all;
 
 entity and2 is
    generic (
-      G_WIDTH : integer := 4
+      G_WIDTH : integer := 16
    );
    port (
       -- Inputs
